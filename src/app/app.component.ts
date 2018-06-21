@@ -26,16 +26,18 @@ export class AppComponent {
     nombre: null,
     cal: null
   };
+  modoEdicion: boolean = false;
   seleccionarUsuario(usuario) {
     this.currentUser = usuario;
+    this.modoEdicion = true;
   }
   eliminarUsuario(i) {
     this.usuarios.splice(i, 1);
   }
   agregarUsuario() {
-    this.usuarios.push(this.currentUser);
-    this.nombreUsuario = null;
-    this.calUsuario = null;
+    const copia = Object.assign({}, this.currentUser);
+    this.usuarios.push(copia);
+    this.modoEdicion = false;
   }
   imprimirArreglo() {
     console.log(this.miArreglo);
